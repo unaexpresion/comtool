@@ -7,9 +7,8 @@ class App extends Component {
 
     constructor() {
         super();
-        ipcRenderer.on('ipcResponse', (event, arg) => {
+        ipcRenderer.on('message-from-react-reply', (event, arg) => {
             console.log(arg);
-            console.log(event);
         });
     }
 
@@ -30,15 +29,15 @@ class App extends Component {
         });
     }
 
-    executeAnotherThing = () => {
-        ipcRenderer.send('execute-another-thing', 'hola');
+    sendMessage = () => {
+        ipcRenderer.send('message-from-react', 'Hello Main process :)');
     }
 
     render() {
         return (
             <div>
                 <button onClick={ this.notifyMe }>Notify me!!</button>
-                <button onClick={ this.executeAnotherThing }>Execute another thing</button>
+                <button onClick={ this.sendMessage }>Send message to Main Process</button>
             </div>
         );
     }

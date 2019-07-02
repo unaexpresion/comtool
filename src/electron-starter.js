@@ -11,7 +11,6 @@ const createWindow = () => {
         height : 800,
         webPreferences: {
             nodeIntegration: true,
-            //preload: __dirname + '/preload.js'
         }
     });
 
@@ -43,7 +42,7 @@ app.on('active', () => {
     if (mainWindow == null) createWindow();
 });
 
-ipcMain.on('execute-another-thing', (event, arg) => {
-    console.log('aaaaaaaaaaaaa')
-    event.reply('ipcResponse', 'pong')
+ipcMain.on('message-from-react', (event, arg) => {
+    console.log(arg)
+    event.reply('message-from-react-reply', 'Hi renderer process!!')
 });
