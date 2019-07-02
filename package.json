@@ -14,7 +14,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron": "electron .",
-    "elec-dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && ELECTRON_START_URL=http://localhost:3000 electron .\""
+    "dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && ELECTRON_START_URL=http://localhost:3000 electron .\""
   },
   "homepage": "./",
   "eslintConfig": {
@@ -35,6 +35,12 @@
   "devDependencies": {
     "concurrently": "^4.1.1",
     "electron": "^5.0.6",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.14.2",
+    "eslint-plugin-standard": "^4.0.0",
     "wait-on": "^3.2.0"
   }
 }
