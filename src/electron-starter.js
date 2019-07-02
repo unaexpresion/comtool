@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 
 const path = require('path');
 const url = require('url');
@@ -6,16 +6,19 @@ const url = require('url');
 let mainWindow;
 
 const createWindow = () => {
+
+    Menu.setApplicationMenu(null);
+    
     mainWindow = new BrowserWindow({
         width : 800,
         height : 800,
         webPreferences: {
             nodeIntegration: true,
-        }
+            preload : __dirname + '/preload.js'
+        },
+        title : "ComTool"
     });
-
-    console.log(process.env.ELECTRON_START_URL)
-
+    
     const starUrl = process.env.ELECTRON_START_URL
         || url.format({
             pathname : path.join(__dirname, '/../build/index.html'),
