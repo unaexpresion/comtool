@@ -14,7 +14,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron": "electron .",
-    "dev" : "nf start"
+    "elec-dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && ELECTRON_START_URL=http://localhost:3000 electron .\""
   },
   "homepage": "./",
   "eslintConfig": {
@@ -33,7 +33,8 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^4.1.1",
     "electron": "^5.0.6",
-    "foreman": "^3.0.1"
+    "wait-on": "^3.2.0"
   }
 }

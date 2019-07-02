@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 
 const path = require('path');
 const url = require('url');
@@ -8,8 +8,14 @@ let mainWindow;
 const createWindow = () => {
     mainWindow = new BrowserWindow({
         width : 800,
-        height : 800
+        height : 800,
+        webPreferences: {
+            nodeIntegration: true,
+            //preload: __dirname + '/preload.js'
+        }
     });
+
+    console.log(process.env.ELECTRON_START_URL)
 
     const starUrl = process.env.ELECTRON_START_URL
         || url.format({
@@ -35,4 +41,9 @@ app.on('window-all-closed', () => {
 
 app.on('active', () => {
     if (mainWindow == null) createWindow();
+});
+
+ipcMain.on('execute-another-thing', (event, arg) => {
+    console.log('aaaaaaaaaaaaa')
+    event.reply('ipcResponse', 'pong')
 });
